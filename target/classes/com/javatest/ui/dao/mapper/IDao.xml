@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper 선언 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.javatest.ui.dao.IDao"> <!-- 인터페이스 -->
+	
+	<select id="listDao" resultType="com.javatest.ui.dto.ContentDto">
+	<!-- 반환값이 있는 경우(select) 리절트타입을 패키지명과 함게 기재 -->
+		select * from UI_board order by mid ASC
+	</select>
+	
+	<select id="listcountDao" resultType="int">
+	<!-- 반환값이 있는 경우(select) 리절트타입을 패키지명과 함게 기재 -->
+		select count(*) from UI_board
+	</select>
+	
+	<insert id="writeDao">
+	<!-- where 절 -->
+		insert into  UI_board (MID, MNAME, MTEL, MADDRESS, MDATE) values (UI_BOARD_SEQ.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	
+	<select id="viewDao" resultType="com.javatest.ui.dto.ContentDto">
+	<!-- where 절 -->
+		SELECT * FROM UI_board WHERE mid=#{param1}
+	</select>
+	
+	<delete id="deleteDao">
+	<!-- where 절 -->
+		delete from UI_board where mid=#{param1}
+	</delete>
+
+	<update id="modifyDao">
+	<!-- where 절 -->
+		update UI_board set MNAME=#{param1}, MTEL=#{param2}, MADDRESS=#{param3}, MDATE=#{param4} where mid=#{param5}
+	</update>
+
+</mapper>
